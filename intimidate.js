@@ -31,5 +31,67 @@ alert( styles.pop() );
 //question 4
 
 
+function camelize(str) {
+    return str
+      .split('-') 
+      .map(
+        
+        (word, index) => index == 0 ? word : word[0].toUpperCase() + word.slice(1)
+      )
+      .join('');
+    
+    }   
+
+    //Question 5
+
+    //question 6
+
+
+    function filterRange(arr, a, b) {
+        return arr.filter(item => (a <= item && item <= b));
+      }
+
+        let arr = [5, 3, 8, 1];
+
+        let filtered = filterRange(arr, 1, 4);
+
+        alert( filtered ); // 3,1 (matching values)
+
+        //question 7
+
+        function filterRangeInPlace(arr, a, b) {
+            for (let i = 0; i < arr.length; i++) {
+              let val = arr[i];
+              if (val < a || val > b) {
+                arr.splice(i, 1);
+                i--;
+              }
+            }
+          }
+
+            let arr = [5, 3, 8, 1];
+
+            filterRangeInPlace(arr, 1, 4); 
+
+            alert( arr ); 
+
+            //question 8
+
+            let messages = [  {text: "Hello", from: "John"},  {text: "How goes?", from: "John"},  {text: "See you soon", from: "Alice"}];
+
+            let readMessages = new WeakSet();
+
+            readMessages.add(messages[0]);
+            readMessages.add(messages[1]);
+            readMessages.add(messages[0]);
+
+            alert("Read message 0: " + readMessages.has(messages[0]));
+            
+
+
+
+
+
+
 
 
