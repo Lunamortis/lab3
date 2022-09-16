@@ -175,8 +175,45 @@ let room = {
     return (key != "" && value == meetup) ? undefined : value;
   }));
 
+  //question 12
+  class FormatError extends SyntaxError {
+    constructor(message) {
+      super(message);
+      this.name = this.constructor.name;
+    }
+  }
   
+  let err = new FormatError("formatting error");
+  
+  alert( err.message ); // formatting error
+  alert( err.name ); // FormatError
+  alert( err.stack ); // stack
+  
+  alert( err instanceof SyntaxError ); // true
+  
+//question 13
 
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+delay(3000).then(() => alert('runs after 3 seconds'));
+
+//question 14`
+
+async function loadJson(url) { // (1)
+  let response = await fetch(url); // (2)
+
+  if (response.status == 200) {
+    let json = await response.json(); // (3)
+    return json;
+  }
+
+  throw new Error(response.status);
+}
+
+loadJson('https://javascript.info/no-such-user.json')
+  .catch(alert); // Error: 404 (4)
 
 
 
