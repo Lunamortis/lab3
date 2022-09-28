@@ -1,0 +1,23 @@
+{
+  "name": "lab3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "advanced.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lunamortis/lab3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Lunamortis/lab3/issues"
+  },
+  "homepage": "https://github.com/Lunamortis/lab3#readme",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+}

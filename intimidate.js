@@ -24,9 +24,10 @@ console.log(truncate(str, num));
 let styles = ["Jazz", "Blues"];
 styles.push("Rock-n-Roll");
 styles[Math.floor((styles.length - 1) / 2)] = "Classics";
-alert(styles.shift());
+console.log(styles.shift());
 styles.unshift("Rap", "Reggae");
-alert(styles.pop());
+console.log(styles.pop());
+console.log(styles)
 
 //question 4
 
@@ -38,9 +39,10 @@ function camelize(str) {
 
       (word, index) => index == 0 ? word : word[0].toUpperCase() + word.slice(1)
     )
-    .join('');
+    .join(''); 
 
 }
+console.log(camelize('border-left-width'))
 
 //Question 5
 function Calculator() {
@@ -56,14 +58,22 @@ function Calculator() {
       a = +split[0],
       op = split[1],
       b = +split[2];
-    }
-
+    //just had the brackets in the wrong place
     return this.methods[op](a, b);
   };
 
   this.addMethod = function (name, func) {
     this.methods[name] = func;
   };
+}
+
+  let mycalc = new Calculator()
+  console.log(mycalc.calculate("8 + 5"))
+  console.log(mycalc.calculate("8 - 5"))
+  mycalc.addMethod('*', (a,b) => a*b)
+  mycalc.addMethod('/', (a,b) => a/b)
+  console.log(mycalc.calculate("8 * 5"))
+  console.log(mycalc.calculate("8 / 5"))
 
 //question 6
 
@@ -75,7 +85,25 @@ let arr = [5, 3, 8, 1];
 
 let filtered = filterRange(arr, 1, 4);
 
-alert(filtered); // 3,1 (matching values)
+console.log(filtered); // 3,1 (matching values)
+//works well but doesn't quite answer the question asking for filtering unique values?
+
+function unique(arr) {
+  let result = [];
+
+  for (let str of arr) {
+    if (!result.includes(str)) {
+      result.push(str);
+    }
+  }
+
+  return result;
+}
+
+let strings = ["Hare", "Krishna", "Hare", "Krishna", "Krishna", "Krishna", "Hare", "Hare", ":-O"];
+
+console.log( unique(strings) ); // Hare, Krishna, :-O
+
 
         //question 7
 
@@ -87,7 +115,7 @@ let keys = Array.from(map.keys());
 
 keys.push("more");
 
-alert(keys); // name, more
+console.log(keys); // name, more
 
 //question 8
 
@@ -112,7 +140,10 @@ readMessages.add(messages[0]);
 //Asking message 0 was read or not 
 console.log('Read Message 0: '+ readMessages.has(messages[0])); //True
 
-messages.shift(); //message[1]
+//messages.shift(); //message[1]
+
+messages[0] = null
+console.log('Read Message 0: '+ readMessages.has(messages[0])); //false, because weaksets dont keep unused references
 
 //question 9
 
@@ -130,16 +161,16 @@ let salaries = {
   "Mary": 250
 };
 
-alert(sumSalaries(salaries)); 
+console.log(sumSalaries(salaries)); 
 
 
 //question 10
 
-const salaries = {
-  "John": 100,
-  "Pete": 300,
-  "Mary": 250
-  };
+// const salaries = {
+//   "John": 100,
+//   "Pete": 300,
+//   "Mary": 250
+//   };
 
   function topSalary(salaries) {
 
@@ -156,9 +187,9 @@ const salaries = {
     return maxName;
   }
 
-  alert(topSalary(salaries)); // Pete
+  console.log(topSalary(salaries)); // Pete
 
-//question 11
+//question 12 - 11 is missing?
 
 let room = {
   number: 23
@@ -171,11 +202,11 @@ let room = {
   // circular references
   room.occupiedBy = meetup;
   meetup.self = meetup;
-  alert( JSON.stringify(meetup, function replacer(key, value) {
+  console.log( JSON.stringify(meetup, function replacer(key, value) {
     return (key != "" && value == meetup) ? undefined : value;
   }));
 
-  //question 12
+  //question 13
   class FormatError extends SyntaxError {
     constructor(message) {
       super(message);
@@ -185,11 +216,11 @@ let room = {
   
   let err = new FormatError("formatting error");
   
-  alert( err.message ); // formatting error
-  alert( err.name ); // FormatError
-  alert( err.stack ); // stack
+  console.log( err.message ); // formatting error
+  console.log( err.name ); // FormatError
+  console.log( err.stack ); // stack
   
-  alert( err instanceof SyntaxError ); // true
+  console.log( err instanceof SyntaxError ); // true
   
 //question 13
 
@@ -197,7 +228,7 @@ function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-delay(3000).then(() => alert('runs after 3 seconds'));
+delay(3000).then(() => console.log('runs after 3 seconds'));
 
 //question 14`
 
@@ -213,7 +244,7 @@ async function loadJson(url) { // (1)
 }
 
 loadJson('https://javascript.info/no-such-user.json')
-  .catch(alert); // Error: 404 (4)
+  .catch(console.log); // Error: 404 (4)
 
 
 
